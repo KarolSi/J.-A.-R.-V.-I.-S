@@ -9,6 +9,9 @@ import random as rd
 import subprocess as sp
 import webbrowser
 import pyttsx3 as tts 
+import socket
+
+
 
 
 #==================================
@@ -48,8 +51,23 @@ def get_audio():
     return said 
 
 
+#--------PRZWITANIE SIĘ-----------
+
+open_text = [" Urachamianie systemów...", "Jarvis melduję się na mostku", "Dzień dobry, 4 bobry"]
+los = rd.randint(0, 2)
+speak(open_text[los])
 
 
+
+#==================================
+#------Podłączenie do Serwera------
+#==================================
+s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+speak("nawiązywanie łączności")  
+s.connect(('localhost', 8008)) 
+print(s.getsockname())
+
+    
 
 #==================================
 #------------AKCJE-----------------
@@ -123,6 +141,17 @@ def steam():
     sp.Popen("C:\Program Files (x86)\Steam\Steam.exe")
     speak("Już się robi")
 
+def serwer():
+    print("próba łączności")
+    speak("próba łączności")
+    s.sendall(b'example')
+    data = s.recv(1024)
+    print(data)
+    if(b'we have connectionco\xc5\x9bpc: OK'==data):
+        speak("mamy to, połączenie zostało nawiązane")
+    
+
+
 #def discord():
  #   print("Już się robi...")
   #  sp.Popen("C:\Users\karol\AppData\Local\Discord\Update.exe --processStart Discord.exe")
@@ -132,9 +161,7 @@ def steam():
 #==================================
 #-------SPRAWDZANIE KOMEND---------
 #==================================
-open_text = [" Urachamianie systemów...", "Jarvis melduję się na mostku", "Dzień dobry, 4 bobry"]
-los = rd.randint(0, 2)
-speak(open_text[los])
+
 
 
 def komendy():
@@ -197,6 +224,16 @@ def komendy():
     for phrase in solv:
         if phrase in text:
             solve()
+    
+    serw = ["Próba", "próba"]
+    for phrase in serw:
+        if phrase in text:
+            serwer()
+
+
+
+
+
 
 
 
