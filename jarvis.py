@@ -1,3 +1,4 @@
+from unittest import skip
 from matplotlib.pyplot import text
 import speech_recognition as sr
 from gtts import gTTS
@@ -10,6 +11,9 @@ import subprocess as sp
 import webbrowser
 import pyttsx3 as tts 
 import socket
+from tkinter import *
+from tkinter import ttk
+import turtle 
 
 
 
@@ -53,19 +57,27 @@ def get_audio():
 
 #--------PRZWITANIE SIĘ-----------
 
-open_text = [" Urachamianie systemów...", "Jarvis melduję się na mostku", "Dzień dobry, 4 bobry"]
+open_text = [" Uruchamianie systemów...", "Jarvis melduję się na mostku", "Dzień dobry, 4 bobry"]
 los = rd.randint(0, 2)
 speak(open_text[los])
 
-
+#==================================
+#-------USTAIWNIA OKIENKA----------
+#==================================
 
 #==================================
 #------Podłączenie do Serwera------
 #==================================
-s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-speak("nawiązywanie łączności")  
-s.connect(('localhost', 8008)) 
-print(s.getsockname())
+speak("Czy mam się łączyć z serwerem?")
+text = get_audio()
+if("Tak"==text):
+    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    speak("łączenie z serwerami")  
+    s.connect(('localhost', 8008)) 
+    print(s.getsockname())
+else:
+    skip
+
 
     
 
@@ -157,6 +169,9 @@ def serwer():
   #  sp.Popen("C:\Users\karol\AppData\Local\Discord\Update.exe --processStart Discord.exe")
    # speak("Już się otwiera")
 
+def czuwam():
+    print("Dla Pana zawsze")
+    speak("dla Pana zawsze")
 
 #==================================
 #-------SPRAWDZANIE KOMEND---------
@@ -230,6 +245,10 @@ def komendy():
         if phrase in text:
             serwer()
 
+    jestes = ["Jarvis czuwasz", "Jarvis jesteś tam"]
+    for phrase in jestes:
+        if phrase in text:
+            czuwam()
 
 
 
