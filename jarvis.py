@@ -19,14 +19,14 @@ import turtle
 
 
 #==================================
-#-----SPEAK & RECORDING------------
+#-------SPEAK & RECORDING----------
 #==================================
 '''
 engine = tts.init()
 engine.setProperty('rate', 125)
 engine.setProperty('age', 60)
-def mow(text):
-    engine.say(text)
+def mow(t):
+    engine.say(t)
     engine.runAndWait()
 '''
 
@@ -69,8 +69,8 @@ speak(open_text[los])
 #------Podłączenie do Serwera------
 #==================================
 speak("Czy mam się łączyć z serwerem?")
-text = get_audio()
-if("Tak"==text):
+t = get_audio()
+if("Tak"==t):
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     speak("łączenie z serwerami")  
     s.connect(('localhost', 8008)) 
@@ -120,17 +120,19 @@ def instagram():
     speak("Już Się robi szefie")
 
 def wyszkuwinanie():
-    print("Co mam wyszukać")
-    speak("Co mam wyszukać")
-    zmienna = get_audio().lower()
-    zmienna = zmienna.replace(' ', '+')
-    webbrowser.open_new_tab("https://www.google.com/search?q=" + str(zmienna))
+    global t
+    t = t.replace("Wyszukaj ", "")
+    t = t.replace(' ', '+')
+    webbrowser.open_new_tab("https://www.google.com/search?q=" + str(t))
 def youtube():
-    print("Co mam puścić?")
-    speak("co mam puścić?")
-    you = get_audio().lower()
-    you = you.replace(' ', '++')
-    webbrowser.open_new_tab("https://www.youtube.com/results?search_query=" + str(you))
+    global t
+    #print("Co mam puścić?")
+    #speak("co mam puścić?")
+    #you = get_audio().lower()
+    
+    t = t.replace("Puść ", "")
+    t = t.replace(' ', '++')
+    webbrowser.open_new_tab("https://www.youtube.com/results?search_query=" + str(t))
     
 
 def onedrive():
@@ -182,72 +184,72 @@ def czuwam():
 def komendy():
     off_commands = ["Wyłącz się", "wyłącz się", "koniec na dziś", "jestem zadowolony z opieki", "Koniec na dziś", "Kończymy", "Jestem zadowolony z opieki" ]
     for phrase in off_commands:
-        if phrase in text:
+        if phrase in t:
             off()
     
     cpp_opinia = ["czy lubisz C plus plus", "Czy lubisz C plus plus", "co sądzisz o C plus plus"]
     for phrase in cpp_opinia:
-        if phrase in text:
+        if phrase in t:
             cppspeak()
 
     notaowanie = ["Zanotuj", "zanotuj", "Zrób notatkę", "zrób notatkę"]
     for phrase in notaowanie:
-        if phrase in text:
+        if phrase in t:
             zanotuj()
         
-    youtu = ["Wyszukaj w YouTubie", "wyszukaj w YouTubie", "Wyszukaj w YouTubie", "Puść muzykę"]
+    youtu = ["Wyszukaj w YouTubie", "wyszukaj w YouTubie", "Wyszukaj w YouTubie", "Puść muzykę", "Puść", "puść"]
     for phrase in youtu:
-        if phrase in text:
+        if phrase in t:
             youtube()
 
-    google = ["wygoogluj", "Wygoogluj", "Wyszukaj w internecie", "wyszukaj w internecie"]
+    google = ["wygoogluj", "Wygoogluj", "Wyszukaj w internecie", "wyszukaj w internecie", "wyszukaj", "Wyszukaj"]
     for phrase in google:
-        if phrase in text:
+        if phrase in t:
             wyszkuwinanie()
         
     mail = ["Otwórz proszę pocztę","Maila otwórz", "maila otwórz","włącz pocztę", "Włącz pocztę","Włącz pocztę", "włącz poczte", "otwórz proszę poczte", "Otwórz maila","otwórz maila", "Odpal skrzynkę", "odpal skrzynkę", "odpal pocztę", "Odpal pocztę"]
     for phrase in mail:
-        if phrase in text:
+        if phrase in t:
             poczta()
     
     fejs = ["Otwórz proszę fejsa"," otwórz proszę fejsa", "Odpal Facebooka", "odpal Fejsa", "Włącz Facebooka", "włącz Facebooka"]
     for phrase in fejs:
-        if phrase in text:
+        if phrase in t:
             facebook()
 
     ig = ["Odpal Insta","odpal Insta", "otwórz instagrama", "Otwórz Instagrama"]
     for phrase in ig:
-        if phrase in text:
+        if phrase in t:
             instagram()
 
     lol = ["Ligusia", "ligusia", "Liga", "liga","ligę","Ligę", "Lola", "lola" ]
     for phrase in lol:
-        if phrase in text:
+        if phrase in t:
             liga()
         
     #dic = ["Discord", "discord", "Discorda", "discorda"]
     #for phrase in dic:
-     #   if phrase in text:
+     #   if phrase in t:
       #      discord()   
         
     oned = ["Chmurę", "chmurę", "Onedriva", "onedriva"]
     for phrase in oned:
-        if phrase in text:
+        if phrase in t:
             onedrive()
     
     solv = ["Solva", "solva"]
     for phrase in solv:
-        if phrase in text:
+        if phrase in t:
             solve()
     
     serw = ["Próba", "próba"]
     for phrase in serw:
-        if phrase in text:
+        if phrase in t:
             serwer()
 
-    jestes = ["Jarvis czuwasz", "Jarvis jesteś tam"]
+    jestes = ["czuwasz", "Jarvis jesteś tam"]
     for phrase in jestes:
-        if phrase in text:
+        if phrase in t:
             czuwam()
 
 
@@ -266,7 +268,7 @@ speak(" Gotowość w 100%")
 
 while (1):
     
-    text = get_audio()
-    print(text)
+    t = get_audio()
+    print(t)
     komendy()
 
