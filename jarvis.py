@@ -21,6 +21,7 @@ import turtle
 #==================================
 #-------SPEAK & RECORDING----------
 #==================================
+
 '''
 engine = tts.init()
 engine.setProperty('rate', 125)
@@ -65,6 +66,7 @@ speak(open_text[los])
 #-------USTAIWNIA OKIENKA----------
 #==================================
 
+
 #==================================
 #------Podłączenie do Serwera------
 #==================================
@@ -107,7 +109,6 @@ def facebook():
     webbrowser.open_new_tab("https://facebook.com")
     speak("okej, poczekaj chwilę")
     
-
 def poczta():
     print("Uruchamiam pocztę")
     webbrowser.open_new_tab("https://n126.domenomania.pl/poczta")
@@ -124,6 +125,7 @@ def wyszkuwinanie():
     t = t.replace("Wyszukaj ", "")
     t = t.replace(' ', '+')
     webbrowser.open_new_tab("https://www.google.com/search?q=" + str(t))
+
 def youtube():
     global t
     #print("Co mam puścić?")
