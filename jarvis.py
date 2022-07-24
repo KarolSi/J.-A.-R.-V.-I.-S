@@ -2,7 +2,6 @@ from unittest import skip
 from matplotlib.pyplot import text
 import speech_recognition as sr
 from gtts import gTTS
-import time as t
 import os
 import playsound
 import sys
@@ -14,6 +13,7 @@ import socket
 from tkinter import *
 from tkinter import ttk
 import turtle 
+import datetime
 
 
 
@@ -143,7 +143,7 @@ def onedrive():
     print("Już włączam")
 
 def solve():
-    print("solve")
+    print("otwieranie solve'a")
     webbrowser.open_new_tab("https://solve.edu.pl/contests")
     speak("Otwieranie dzieła Pokora")
 
@@ -165,7 +165,10 @@ def serwer():
     print(data)
     if(b'we have connectionco\xc5\x9bpc: OK'==data):
         speak("mamy to, połączenie zostało nawiązane")
-    
+
+def czas():
+    print(str(datetime.datetime.today().hour) + ":" + str(datetime.datetime.today().minute))
+    speak("jest " + str(datetime.datetime.today().hour) + ":" + str(datetime.datetime.today().minute))
 
 
 #def discord():
@@ -253,6 +256,11 @@ def komendy():
     for phrase in jestes:
         if phrase in t:
             czuwam()
+
+    hour = ["Która jest godzina", "Jaki czas mamy"]
+    for phrase in hour:
+        if phrase in t:
+            czas():
 
 
 
