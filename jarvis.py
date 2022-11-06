@@ -147,11 +147,6 @@ def solve():
     webbrowser.open_new_tab("https://solve.edu.pl/contests")
     speak("Otwieranie dzieła Pokora")
 
-def liga():
-    print("Już włączam...")
-    sp.Popen("C:\Riot Games\League of Legends\LeagueClient.exe")
-    speak("Już otwieram. Miłej gry")
-
 def steam():
     print("Się robi...")
     sp.Popen("C:\Program Files (x86)\Steam\Steam.exe")
@@ -186,7 +181,52 @@ def czuwam():
 
 
 
+
 def komendy():
+    on_command = ["Włącz", "włacz", "odpal", "Odpal", "Otwórz", "otwórz"]
+    for phrase in on_command:
+        if phrase in t:
+
+            mail = ["pocztę","Maila", "maila","poczte","Pocztę", "Poczte", "skrzynkę"]
+            for phrase in mail:
+                if phrase in t:
+                    poczta()
+            fejs = ["fejsa","Fejsa", "Facebooka", "facebooka"]
+            for phrase in fejs:
+                if phrase in t:
+                    facebook()
+
+            ig = ["Insta","insta", "instagrama", "Instagrama"]
+            for phrase in ig:
+                if phrase in t:
+                    instagram()
+            oned = ["Chmurę", "chmurę", "Onedriva", "onedriva"]
+            for phrase in oned:
+                if phrase in t:
+                    onedrive()
+            
+            solv = ["Solva", "solva"]
+            for phrase in solv:
+                if phrase in t:
+                    solve()
+        
+
+    find_comm = ["Wyszukaj","wyszukaj","Puść","puść", "wygoogluj"]
+    for phrase in find_comm:
+        if phrase in t:
+
+            youtu = ["YouTubie", "youtubie","muzykę"]
+            for phrase in youtu:
+                if phrase in t:
+                    youtube()
+
+            google = ["wygoogluj", "Wygoogluj", "internecie", "wyszukaj", "Wyszukaj"]
+            for phrase in google:
+                if phrase in t:
+                    wyszkuwinanie()
+
+
+
     off_commands = ["Wyłącz się", "wyłącz się", "koniec na dziś", "jestem zadowolony z opieki", "Koniec na dziś", "Kończymy", "Jestem zadowolony z opieki" ]
     for phrase in off_commands:
         if phrase in t:
@@ -202,50 +242,14 @@ def komendy():
         if phrase in t:
             zanotuj()
         
-    youtu = ["Wyszukaj w YouTubie", "wyszukaj w YouTubie", "Wyszukaj w YouTubie", "Puść muzykę", "Puść", "puść"]
-    for phrase in youtu:
-        if phrase in t:
-            youtube()
-
-    google = ["wygoogluj", "Wygoogluj", "Wyszukaj w internecie", "wyszukaj w internecie", "wyszukaj", "Wyszukaj"]
-    for phrase in google:
-        if phrase in t:
-            wyszkuwinanie()
         
-    mail = ["Otwórz proszę pocztę","Maila otwórz", "maila otwórz","włącz pocztę", "Włącz pocztę","Włącz pocztę", "włącz poczte", "otwórz proszę poczte", "Otwórz maila","otwórz maila", "Odpal skrzynkę", "odpal skrzynkę", "odpal pocztę", "Odpal pocztę"]
-    for phrase in mail:
-        if phrase in t:
-            poczta()
     
-    fejs = ["Otwórz proszę fejsa"," otwórz proszę fejsa", "Odpal Facebooka", "odpal Fejsa", "Włącz Facebooka", "włącz Facebooka"]
-    for phrase in fejs:
-        if phrase in t:
-            facebook()
-
-    ig = ["Odpal Insta","odpal Insta", "otwórz instagrama", "Otwórz Instagrama"]
-    for phrase in ig:
-        if phrase in t:
-            instagram()
-
-    lol = ["Ligusia", "ligusia", "Liga", "liga","ligę","Ligę", "Lola", "lola" ]
-    for phrase in lol:
-        if phrase in t:
-            liga()
         
     #dic = ["Discord", "discord", "Discorda", "discorda"]
     #for phrase in dic:
      #   if phrase in t:
       #      discord()   
         
-    oned = ["Chmurę", "chmurę", "Onedriva", "onedriva"]
-    for phrase in oned:
-        if phrase in t:
-            onedrive()
-    
-    solv = ["Solva", "solva"]
-    for phrase in solv:
-        if phrase in t:
-            solve()
     
     serw = ["Próba", "próba"]
     for phrase in serw:
@@ -260,7 +264,7 @@ def komendy():
     hour = ["Która jest godzina", "Jaki czas mamy"]
     for phrase in hour:
         if phrase in t:
-            czas():
+            czas()
 
 
 
